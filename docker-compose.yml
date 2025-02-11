@@ -9,13 +9,18 @@ services:
       POSTGRES_DB: book_track_development
       POSTGRES_TEST_DB: book_track_test
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   web:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec foreman start -f Procfile.dev"
+    command: >
+      bash -c "
+      rm -f tmp/pids/server.pid &&
+      bin/rails tailwindcss:install &&
+      bin/rails tailwindcss:build &&
+      bin/rails server -b 0.0.0.0 -p 3000"
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle
@@ -23,6 +28,7 @@ services:
       - DATABASE_URL=postgres://book_track:password@db/book_track_development
       - RAILS_ENV=development
       - REDIS_URL=redis://redis:6379/1
+      - RAILS_SERVE_STATIC_FILES=true
     ports:
       - "3000:3000"
     depends_on:

@@ -60,9 +60,9 @@ jobs:
   slim_lint:
     runs-on: ubuntu-latest
     if: >-
-      contains(github.event.pull_request.changed_files, '.slim') ||
-      contains(github.event.push.commits.*.modified, '*.slim') ||
-      contains(github.event.push.commits.*.added, '*.slim')
+      contains(toJSON(github.event.pull_request.changed_files), '.slim') ||
+      contains(toJSON(github.event.push.commits.*.modified), '.slim') ||
+      contains(toJSON(github.event.push.commits.*.added), '.slim')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

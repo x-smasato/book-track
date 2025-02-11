@@ -80,11 +80,6 @@ jobs:
       - name: Run slim-lint
         if: steps.changed-files.outputs.any_changed == 'true'
         run: bundle exec slim-lint app/views
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version

@@ -59,9 +59,10 @@ jobs:
 
   slim_lint:
     runs-on: ubuntu-latest
-    if: >-
+    if: |
       github.event_name == 'pull_request' &&
-      contains(join(github.event.pull_request.changed_files, ' '), '.slim')
+      contains(github.event.pull_request.title, '.slim') || 
+      github.event.pull_request.changed_files > 0
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

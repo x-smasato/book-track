@@ -57,3 +57,22 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
 
+  slim_lint:
+    runs-on: ubuntu-latest
+    if: >-
+      contains(github.event.pull_request.changed_files, '.slim') ||
+      contains(github.event.push.commits.*.modified, '*.slim') ||
+      contains(github.event.push.commits.*.added, '*.slim')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run slim-lint
+        run: bundle exec slim-lint app/views
+

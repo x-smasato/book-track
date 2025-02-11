@@ -7,6 +7,12 @@ footer.bg-gray-800.text-white.py-6.mt-auto
           = Time.current.year
           |  Masato Sugiyama. All rights reserved.
       nav.flex.space-x-4
-        a.text-sm.hover:text-gray-300 href="/" ホーム
-        a.text-sm.hover:text-gray-300 href="#" プライバシーポリシー
-        a.text-sm.hover:text-gray-300 href="#" 利用規約
+        = link_to "ホーム", 
+          root_path, 
+          class: "text-sm hover:text-gray-300"
+        = link_to "プライバシーポリシー", 
+          "#", 
+          class: "text-sm hover:text-gray-300"
+        = link_to "利用規約", 
+          "#", 
+          class: "text-sm hover:text-gray-300"

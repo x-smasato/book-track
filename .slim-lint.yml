@@ -1,0 +1,21 @@
+linters:
+  LineLength:
+    max: 120
+    
+  RuboCop:
+    enabled: true
+    ignored_cops:
+      - Layout/ArgumentAlignment
+      - Layout/LineLength
+      
+  ConsecutiveControlStatements:
+    max_consecutive: 2
+    
+  RedundantDiv:
+    enabled: true
+    
+  EmptyLines:
+    enabled: true
+    
+  TrailingWhitespace:
+    enabled: true

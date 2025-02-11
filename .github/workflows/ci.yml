@@ -2,8 +2,12 @@ name: CI
 
 on:
   pull_request:
+    paths:
+      - '**/*.slim'
   push:
     branches: [ main ]
+    paths:
+      - '**/*.slim'
 
 jobs:
   scan_ruby:
@@ -59,9 +63,6 @@ jobs:
 
   slim_lint:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    paths:
-      - '**/*.slim'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

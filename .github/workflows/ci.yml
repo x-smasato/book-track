@@ -81,6 +81,3 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         run: bundle exec slim-lint app/views
 
-      - name: Run slim-lint
-        run: bundle exec slim-lint app/views
-

@@ -80,10 +80,6 @@ jobs:
       - name: Run slim-lint
         if: steps.changed-files.outputs.any_changed == 'true'
         run: bundle exec slim-lint app/views
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
 
       - name: Run slim-lint
         run: bundle exec slim-lint app/views

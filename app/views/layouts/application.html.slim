@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title
+      = content_for(:title) || "Book Track"
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="mobile-web-app-capable" content="yes"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    / Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!)
+    /= tag.link rel: "manifest", href: pwa_manifest_path(format: :json)
+    link rel="icon" href="/icon.png" type="image/png"
+    link rel="icon" href="/icon.svg" type="image/svg+xml"
+    link rel="apple-touch-icon" href="/icon.png"
+    = stylesheet_link_tag :app
+    = javascript_importmap_tags
+  body.flex.flex-col.min-h-screen
+    - if notice
+      p.notice.bg-blue-100.border-l-4.border-blue-500.text-blue-700.p-4.mb-4
+        = notice
+    - if alert
+      p.alert.bg-red-100.border-l-4.border-red-500.text-red-700.p-4.mb-4
+        = alert
+    main.container.mx-auto.mt-28.px-5.flex-grow
+      = yield
+    = render 'shared/footer'

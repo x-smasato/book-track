@@ -22,4 +22,4 @@ linters:
     enabled: true
 
   TrailingBlankLines:
-    enabled: true
+    enabled: false

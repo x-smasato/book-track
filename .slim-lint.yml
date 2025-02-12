@@ -7,6 +7,7 @@ linters:
     ignored_cops:
       - Layout/ArgumentAlignment
       - Layout/LineLength
+      - Layout/TrailingEmptyLines
       
   ConsecutiveControlStatements:
     max_consecutive: 2
@@ -18,4 +19,7 @@ linters:
     enabled: true
     
   TrailingWhitespace:
+    enabled: true
+
+  TrailingBlankLines:
     enabled: true

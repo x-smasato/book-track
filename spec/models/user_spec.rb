@@ -16,5 +16,10 @@ RSpec.describe User, type: :model do
       user = build(:user, name: '')
       expect(user).not_to be_valid
     end
+
+    it 'is valid with an empty description' do
+      user = build(:user, description: '')
+      expect(user).to be_valid
+    end
   end
 end

@@ -1,0 +1,16 @@
+header.bg-white.shadow-sm.fixed.w-full.top-0.z-50
+  .container.mx-auto.px-5.py-4.flex.justify-between.items-center
+    = link_to "Book Track", root_path, class: "text-xl font-bold text-gray-900"
+    nav.flex.space-x-4
+      - if user_signed_in?
+        = button_to "ログアウト",
+          destroy_user_session_path,
+          method: :delete,
+          class: "text-sm text-gray-600 hover:text-gray-900"
+      - else
+        = link_to "新規登録",
+          new_user_registration_path,
+          class: "text-sm text-gray-600 hover:text-gray-900"
+        = link_to "ログイン",
+          new_user_session_path,
+          class: "text-sm text-gray-600 hover:text-gray-900"

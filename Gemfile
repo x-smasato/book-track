@@ -43,6 +43,7 @@ gem "thruster", require: false
 
 # Authentication solution for Rails with Warden
 gem "devise"
+gem "devise-i18n", "~> 1.12"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,5 +67,3 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
-
-gem "devise-i18n", "~> 1.12"

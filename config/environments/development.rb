@@ -71,5 +71,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   # Allow web console connections from Docker network
-  config.web_console.allowed_ips = %w[127.0.0.0/127.255.255.255 ::1 172.16.0.0/12 192.168.0.0/16]
+  config.web_console.allowed_ips = %w[127.0.0.0/8 ::1 172.16.0.0/12 192.168.0.0/16]
 end

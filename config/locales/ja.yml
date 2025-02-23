@@ -6,6 +6,21 @@ ja:
       user:
         email: "メールアドレス"
         password: "パスワード"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+          blank: "に関する情報を入力してください"
+      messages:
+        blank: "を入力してください"
+  errors:
+    attributes:
+      email:
+        blank: "を入力してください"
+    messages:
+      blank: "を入力してください"
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

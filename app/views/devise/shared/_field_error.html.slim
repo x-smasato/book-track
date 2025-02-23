@@ -1,0 +1,3 @@
+- if resource.errors.has_key?(field)
+  .mt-1.text-sm.text-red-600
+    = resource.errors.full_messages_for(field).first

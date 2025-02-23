@@ -3,13 +3,19 @@ h2.text-2xl.font-bold.mb-6 = t(".sign_up")
     as: resource_name,
     url: registration_path(resource_name),
     html: { class: "space-y-6 max-w-md" }) do |f|
-  = render "devise/shared/error_messages", resource: resource
+  .field
+    = f.label :name, class: "block text-sm font-medium text-gray-700"
+    = f.text_field :name,
+        autofocus: true,
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 #{'border-red-300' if resource.errors.has_key?(:name)}"
+    = render "devise/shared/field_error", resource: resource, field: :name
+
   .field
     = f.label :email, class: "block text-sm font-medium text-gray-700"
     = f.email_field :email,
-        autofocus: true,
         autocomplete: "email",
-        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 #{'border-red-300' if resource.errors.has_key?(:email)}"
+    = render "devise/shared/field_error", resource: resource, field: :email
   .field
     = f.label :password, class: "block text-sm font-medium text-gray-700"
     - if @minimum_password_length
@@ -19,12 +25,14 @@ h2.text-2xl.font-bold.mb-6 = t(".sign_up")
         | )
     = f.password_field :password,
         autocomplete: "new-password",
-        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 #{'border-red-300' if resource.errors.has_key?(:password)}"
+    = render "devise/shared/field_error", resource: resource, field: :password
   .field
     = f.label :password_confirmation, class: "block text-sm font-medium text-gray-700"
     = f.password_field :password_confirmation,
         autocomplete: "new-password",
-        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 #{'border-red-300' if resource.errors.has_key?(:password_confirmation)}"
+    = render "devise/shared/field_error", resource: resource, field: :password_confirmation
   .actions
     = f.submit t(".sign_up"), \
         class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md \

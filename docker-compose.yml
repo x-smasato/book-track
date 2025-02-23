@@ -24,6 +24,7 @@ services:
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle
+      - gem_checksum:/usr/local/bundle/.last_bundle_checksum
     environment:
       - DATABASE_URL=postgres://book_track:password@db/book_track_development
       - RAILS_ENV=development
@@ -46,3 +47,4 @@ volumes:
   postgres_data:
   redis_data:
   bundle_cache:
+  gem_checksum:

@@ -44,3 +44,4 @@ books_data.each do |book_data|
 end
 
 puts "#{Book.count}冊の書籍データを登録しました。"
+AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?

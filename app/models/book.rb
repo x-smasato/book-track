@@ -14,15 +14,15 @@ class Book < ApplicationRecord
   validates :format, inclusion: { in: FORMATS }, allow_nil: true
 
   validate :no_circular_references
-  
+
   # Ransack設定（ActiveAdmin用）
   def self.ransackable_attributes(auth_object = nil)
-    ["author", "created_at", "description", "format", "id", "isbn", "published_date", 
-     "publisher", "related_book_id", "title", "total_pages", "updated_at"]
+    [ "author", "created_at", "description", "format", "id", "isbn", "published_date",
+      "publisher", "related_book_id", "title", "total_pages", "updated_at" ]
   end
-  
+
   def self.ransackable_associations(auth_object = nil)
-    ["related_book", "related_editions", "reading_statuses", "users"]
+    [ "related_book", "related_editions", "reading_statuses", "users" ]
   end
 
   private

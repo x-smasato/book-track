@@ -170,10 +170,13 @@ ActiveAdmin.setup do |config|
   # config.before_action :do_something_awesome
 
   # HTTP Basic認証の設定
-  config.before_action do
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV.fetch("ADMIN_USERNAME", "admin") &&
-      password == ENV.fetch("ADMIN_PASSWORD", "password")
+  # 開発環境では認証をスキップ（テスト用）
+  unless Rails.env.development?
+    config.before_action do
+      authenticate_or_request_with_http_basic do |username, password|
+        username == ENV.fetch("ADMIN_USERNAME", "admin") &&
+        password == ENV.fetch("ADMIN_PASSWORD", "password")
+      end
     end
   end
 

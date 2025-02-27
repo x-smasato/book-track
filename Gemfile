@@ -58,6 +58,7 @@ group :development, :test do
   # Testing framework for Ruby
   gem "rspec-rails"
   gem "factory_bot_rails"  # Factory fixtures for testing
+  gem "shoulda-matchers"   # Test common Rails functionality
   gem "parallel_tests"     # Parallel testing for RSpec
 
   # Slim template linting

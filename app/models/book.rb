@@ -4,6 +4,9 @@ class Book < ApplicationRecord
   belongs_to :related_book, class_name: "Book", optional: true
   has_many :related_editions, class_name: "Book", foreign_key: "related_book_id"
 
+  has_many :reading_statuses, dependent: :destroy
+  has_many :users, through: :reading_statuses
+
   validates :title, presence: true
   validates :author, presence: true
   validates :isbn, uniqueness: true, allow_blank: true

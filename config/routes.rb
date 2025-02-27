@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   # Admin routes with constraints for separate domain
   constraints host: ENV.fetch("ADMIN_HOST", "admin.localhost") do
+    # Map root path to admin dashboard
+    get "/", to: redirect("/admin"), as: :admin_root
+
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
   end

@@ -1,0 +1,29 @@
+class Book < ApplicationRecord
+  FORMATS = %w[physical kindle audiobook ebook].freeze
+
+  belongs_to :related_book, class_name: "Book", optional: true
+  has_many :related_editions, class_name: "Book", foreign_key: "related_book_id"
+
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :isbn, uniqueness: true, allow_blank: true
+  validates :total_pages, numericality: { greater_than: 0, only_integer: true }, allow_nil: true
+  validates :format, inclusion: { in: FORMATS }, allow_nil: true
+
+  validate :no_circular_references
+
+  private
+
+  def no_circular_references
+    # Check for direct self-reference (book referencing itself)
+    if related_book_id.present? && related_book_id == id
+      errors.add(:related_book, "cannot create circular reference")
+      return
+    end
+
+    # Check for circular reference (book1 -> book2 -> book1)
+    if related_book.present? && related_book.related_book_id.present? && related_book.related_book_id == id
+      errors.add(:related_book, "cannot create circular reference")
+    end
+  end
+end

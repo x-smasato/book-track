@@ -2,10 +2,21 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      book: "書籍"
     attributes:
       user:
         email: "メールアドレス"
         password: "パスワード"
+      book:
+        title: "タイトル"
+        author: "著者"
+        isbn: "ISBN"
+        published_date: "出版日"
+        total_pages: "ページ数"
+        description: "説明"
+        publisher: "出版社"
+        format: "フォーマット"
+        related_book: "関連書籍"
     errors:
       models:
         user:
@@ -15,12 +26,22 @@ ja:
           blank: "に関する情報を入力してください"
       messages:
         blank: "を入力してください"
+        taken: "はすでに存在します"
+        greater_than: "%{count}より大きい値にしてください"
+        not_an_integer: "は整数で入力してください"
+        inclusion: "は%{value}ではありません"
+        record_invalid: "バリデーションに失敗しました: %{errors}"
   errors:
     attributes:
       email:
         blank: "を入力してください"
     messages:
       blank: "を入力してください"
+      taken: "はすでに存在します"
+      greater_than: "%{count}より大きい値にしてください"
+      not_an_integer: "は整数で入力してください"
+      inclusion: "は%{value}ではありません"
+      record_invalid: "バリデーションに失敗しました: %{errors}"
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

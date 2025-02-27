@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build the containers if needed
-docker-compose build
+docker compose build
 
 # Run the tests in the web container
-docker-compose run --rm web bundle exec rspec
+docker compose run --rm web bundle exec rspec

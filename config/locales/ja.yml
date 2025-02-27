@@ -3,6 +3,7 @@ ja:
     models:
       user: "ユーザー"
       book: "書籍"
+      reading_status: "読書ステータス"
     attributes:
       user:
         email: "メールアドレス"
@@ -17,6 +18,16 @@ ja:
         publisher: "出版社"
         format: "フォーマット"
         related_book: "関連書籍"
+      reading_status:
+        status: "ステータス"
+        start_date: "開始日"
+        completion_date: "完了日"
+        user: "ユーザー"
+        book: "書籍"
+        statuses:
+          want_to_read: "読みたい"
+          currently_reading: "読書中"
+          completed: "完了"
     errors:
       models:
         user:
@@ -24,6 +35,12 @@ ja:
             email:
               blank: "を入力してください"
           blank: "に関する情報を入力してください"
+        reading_status:
+          attributes:
+            user_id:
+              taken: "既にこの本の読書ステータスが登録されています"
+            completion_date:
+              invalid: "は開始日より後の日付である必要があります"
       messages:
         blank: "を入力してください"
         taken: "はすでに存在します"

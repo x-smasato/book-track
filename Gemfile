@@ -58,6 +58,7 @@ group :development, :test do
   # Testing framework for Ruby
   gem "rspec-rails"
   gem "factory_bot_rails"  # Factory fixtures for testing
+  gem "shoulda-matchers"   # Test common Rails functionality
 
   # Slim template linting
   gem "slim_lint", require: false

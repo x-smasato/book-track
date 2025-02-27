@@ -48,6 +48,7 @@ ja:
         not_an_integer: "は整数で入力してください"
         inclusion: "は%{value}ではありません"
         record_invalid: "バリデーションに失敗しました: %{errors}"
+        required: "を入力してください"
   errors:
     attributes:
       email:

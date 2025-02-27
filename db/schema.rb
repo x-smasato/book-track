@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_11_070240) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_27_050413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "isbn"
+    t.date "published_date"
+    t.integer "total_pages"
+    t.text "description"
+    t.string "publisher"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "related_book_id"
+    t.string "format"
+    t.index ["author"], name: "index_books_on_author"
+    t.index ["isbn"], name: "index_books_on_isbn", unique: true
+    t.index ["related_book_id"], name: "index_books_on_related_book_id"
+    t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "reading_statuses", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.date "start_date"
+    t.date "completion_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reading_statuses_on_book_id"
+    t.index ["user_id", "book_id"], name: "index_reading_statuses_on_user_id_and_book_id", unique: true
+    t.index ["user_id"], name: "index_reading_statuses_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,7 +53,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_070240) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "books", "books", column: "related_book_id"
+  add_foreign_key "reading_statuses", "books"
+  add_foreign_key "reading_statuses", "users"
 end

@@ -8,7 +8,7 @@ class ReadingStatus < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
-  enum status: STATUSES
+  enum :status, STATUSES
 
   validates :status, presence: true
   validates :user_id, uniqueness: { scope: :book_id }

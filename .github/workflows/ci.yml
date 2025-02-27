@@ -120,7 +120,7 @@ jobs:
       - name: Setup database
         run: |
           bin/rails db:create
-          bin/rails db:schema:load
+          bin/rails db:migrate
       
       - name: Run RSpec in parallel
         run: |

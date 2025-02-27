@@ -7,5 +7,7 @@ FactoryBot.define do
     total_pages { 350 }
     description { "Railsの基本から応用までを解説した入門書です。" }
     publisher { "技術書出版社" }
+    format { "physical" }
+    related_book { nil }
   end
 end

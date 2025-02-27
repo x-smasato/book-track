@@ -3,6 +3,9 @@ header.bg-white.shadow-sm.fixed.w-full.top-0.z-50
     = link_to "Book Track", root_path, class: "text-xl font-bold text-gray-900"
     nav.flex.space-x-4
       - if user_signed_in?
+        = link_to "書籍一覧",
+          books_path,
+          class: "text-sm text-gray-600 hover:text-gray-900 mr-4"
         = button_to "ログアウト",
           destroy_user_session_path,
           method: :delete,

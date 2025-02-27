@@ -124,5 +124,5 @@ jobs:
       
       - name: Run RSpec in parallel
         run: |
-          bundle exec parallel_test spec/ -n 2 --group-number ${{ matrix.group }}
+          bundle exec parallel_test spec/ -n 2 --only-group ${{ matrix.group }}
 

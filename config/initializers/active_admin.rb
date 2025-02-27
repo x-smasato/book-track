@@ -62,6 +62,11 @@ ActiveAdmin.setup do |config|
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
+  config.namespace :admin do |admin|
+    admin.route_options = {
+      path: ""
+    }
+  end
 
   # == User Authentication
   #

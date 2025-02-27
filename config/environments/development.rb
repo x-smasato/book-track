@@ -73,6 +73,6 @@ Rails.application.configure do
   # Allow web console connections from Docker network
   config.web_console.allowed_ips = %w[127.0.0.0/8 ::1 172.16.0.0/12 192.168.0.0/16]
 
-  # Allow admin host for separate domain
   config.hosts << ENV.fetch("ADMIN_HOST", "admin.localhost")
+  config.hosts << ENV.fetch("WEB_HOST", "localhost")
 end

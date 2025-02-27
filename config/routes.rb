@@ -1,24 +1,19 @@
 Rails.application.routes.draw do
-  root "home#index"
-  devise_for :users
+  constraints host: ENV.fetch("WEB_HOST", "localhost") do
+    root "home#index"
 
-  resources :books, only: [ :index ]
+    devise_for :users
+
+    resources :books, only: [ :index ]
+
+    get "up" => "rails/health#show", as: :web_rails_health_check
+  end
 
   # Admin routes with constraints for separate domain
   constraints host: ENV.fetch("ADMIN_HOST", "admin.localhost") do
-    # Map root path to admin dashboard without using named routes
-    # to avoid conflicts with ActiveAdmin's routes
-    get "/", to: redirect("/admin")
-
-    devise_for :admin_users, ActiveAdmin::Devise.config
+    devise_for :admin_users, ActiveAdmin::Devise.config.merge(path: "")
     ActiveAdmin.routes(self)
+
+    get "up" => "rails/health#show", as: :admin_rails_health_check
   end
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 end

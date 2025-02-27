@@ -124,5 +124,5 @@ jobs:
       
       - name: Run RSpec in parallel
         run: |
-          bundle exec parallel_test spec/ -n 2 --only-group ${{ matrix.group }}
+          RAILS_ENV=test bundle exec parallel_test spec/ -n 2 --only-group ${{ matrix.group }} --type rspec
 

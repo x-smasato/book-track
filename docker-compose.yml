@@ -30,6 +30,7 @@ services:
       - RAILS_ENV=development
       - REDIS_URL=redis://redis:6379/1
       - RAILS_SERVE_STATIC_FILES=true
+      - WEB_HOST=localhost
       - ADMIN_HOST=admin.localhost
       # Credentials should be set in .env file (not committed to repository)
       - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}

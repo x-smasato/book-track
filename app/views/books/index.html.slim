@@ -1,0 +1,21 @@
+.container.mx-auto.px-4.py-8
+  .flex.justify-between.items-center.mb-6
+    h1.text-2xl.font-bold 書籍一覧
+    / 後で実装する新規登録ボタン用のスペース
+
+  - if @books.empty?
+    .bg-gray-100.rounded-lg.p-8.text-center
+      p.text-gray-600 登録されている書籍はありません。
+  - else
+    .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6
+      - @books.each do |book|
+        .bg-white.rounded-lg.shadow.overflow-hidden
+          .p-6
+            h2.text-xl.font-semibold.mb-2 = book.title
+            p.text-gray-600.mb-4 = "著者: #{book.author}"
+            - if book.published_date.present?
+              p.text-sm.text-gray-500.mb-1 = "出版日: #{book.published_date.strftime('%Y年%m月%d日')}"
+            - if book.total_pages.present?
+              p.text-sm.text-gray-500.mb-1 = "ページ数: #{book.total_pages}ページ"
+            - if book.format.present?
+              p.text-sm.text-gray-500.mb-1 = "形式: #{book.format}"

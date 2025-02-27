@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   resources :books, only: [ :index ]
 
+  # Admin routes with constraints for separate domain
+  constraints host: ENV.fetch("ADMIN_HOST", "admin.localhost") do
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self)
+  end
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

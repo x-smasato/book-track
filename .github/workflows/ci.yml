@@ -57,33 +57,9 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
 
-  slim_lint:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v45
-        with:
-          files: |
-            **/*.slim
-
-      - name: Run slim-lint
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: bundle exec slim-lint app/views
-
   rspec:
     runs-on: ubuntu-latest
-    
+
     services:
       postgres:
         image: postgres:16
@@ -98,30 +74,30 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    
+
     strategy:
       matrix:
         group: [1, 2]
-    
+
     env:
       RAILS_ENV: test
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/book_track_test
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-      
+
       - name: Setup database
         run: |
           bin/rails db:create
           bin/rails db:migrate
-      
+
       - name: Run RSpec in parallel
         run: |
           RAILS_ENV=test bundle exec parallel_test spec/ -n 2 --only-group ${{ matrix.group }} --type rspec

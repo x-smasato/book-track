@@ -43,7 +43,7 @@ gem "thruster", require: false
 
 # Authentication solution for Rails with Warden
 gem "devise"
-gem "devise-i18n", "~> 1.12"
+gem "devise-i18n", "~> 1.13"
 
 # Admin interface
 gem "activeadmin"
